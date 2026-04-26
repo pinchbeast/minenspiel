@@ -4,7 +4,7 @@ import tkinter as tk
 
 def merda(h,w):
 
-    print("button mit koordinaten: ", h, w, "wurde gedrückt")
+    print("button mit koordinaten: x", h,"y", w, "wurde gedrückt")
 
 
 root = tk.Tk()
@@ -24,19 +24,15 @@ while(counter < size):
     counter = counter + 1
 
 
+
 # x = row, counter = column
 
-while(counter > 0):
+for y in array:
     for x in array:
-        buttonname = (f"button_{x}_{counter}")
-        buttonname = tk.Button(root, text="o", width=1, height=1, command=lambda r=counter, c=x: merda(r,c))
-        buttonname.grid(row=x, column=counter)
-        
-
-
-    counter = counter - 1    
-
-
+        buttonname = (f"button_{x}_{y}")
+        buttonname = tk.Button(root, text="o", width=1, height=1, command=lambda r=y, c=x: merda(r,c))
+        buttonname.grid(row=x, column=y)
+ 
 
 #b1a = tk.Button(root, text="o", width=2, height=2, command=lambda: merda(1,1)).pack()
 
