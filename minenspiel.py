@@ -1,22 +1,30 @@
 import tkinter as tk
 import random
 
+def cazzo():
+    counter = 0
+    print("cazzo")
+    for teil in tocheck:
+        merda(teil, buttons[teil])
 
 
-def merda(h,w, btn):
+    
 
-    print("button mit koordinaten: x", h,"y", w, "wurde gedrückt")
-    guesscode = size * w + h
+def merda(guesscode, btn):
+
     if(catalog[guesscode] == 0):
         print("guter guess")
         
-        minenumbernearby=nearby(guesscode, h, w)
+        minenumbernearby=nearby(guesscode)
         btn.config(text=minenumbernearby)
     elif(catalog[guesscode] == 69):
         print("ALARM VERKACKT DU DEPP")
         btn.config(text="X", background="red")
+    for teil in tocheck:
+        print(teil)
+    cazzo()
 
-def nearby(orig, x,y):
+def nearby(orig):
     codes = [orig + 1, orig-1,orig+size,orig-size,orig + 1 + size, orig-1 + size,orig-size +1,orig-size-1]
     #codes.append([orig + 1], [orig-1],[orig+size],[orig-size])
     minenumbernearby = 0
@@ -37,7 +45,7 @@ def nearby(orig, x,y):
 root = tk.Tk()
 #here change size of the grid and set mines
 size = 12
-mines = 80
+mines = 30
 root.title("Minenspiel")
 root.configure(background="white")
 root.minsize(500, 500)
@@ -52,7 +60,7 @@ for y in range(0, size):
         guesscode = size * x + y
         buttonname = (f"button_{guesscode}")
         buttonname = tk.Button(root, text="", width=1, height=1)
-        buttonname.config(command=lambda r=y, c=x, b=buttonname: merda(r,c,b))
+        buttonname.config(command=lambda r=guesscode, b=buttonname:  merda(r,b))
         buttonname.grid(row=x, column=y)
         buttons[guesscode]=buttonname
  
